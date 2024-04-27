@@ -1,17 +1,18 @@
 # coding=utf8
 """Sopel Slap plugin
 
-Plugin for Sopel that lets users slap each other in fun ways
+Plugin for Sopel that lets users slap each other in fun ways.
 
-Original slap.py copyright 2009, Michael Yanovich, yanovich.net
-This rewritten & packaged version for Sopel 7+ copyright 2023, dgw, technobabbl.es
+Original slap.py copyright 2009, Michael Yanovich, yanovich.net.
+
+This rewritten & packaged version for Sopel 7+:
+Copyright 2023, dgw, technobabbl.es
 
 https://sopel.chat
 """
 import random
 
 from sopel import formatting, plugin, tools
-
 
 VERBS = (
     'annihilates',
@@ -35,10 +36,13 @@ def slap(bot, trigger):
     else:
         target = formatting.plain(target)
 
+    # ensure target is an Identifier to increase reliability of "is nick" check
     if not isinstance(target, tools.Identifier):
-        # TODO: For Sopel 8.0+ release, switch to new bot.make_identifier() method
-        # will increase reliability of below "is nick" check
-        target = tools.Identifier(target)
+        if hasattr(bot, 'make_identifier'):
+            target = bot.make_identifier(target)
+        else:
+            # TODO: remove once Sopel 7 support is dropped
+            target = tools.Identifier(target)
 
     if not target.is_nick():
         bot.reply("You can't slap the whole channel!")
@@ -59,4 +63,4 @@ def slap(bot, trigger):
 
     verb = random.choice(VERBS)
 
-    bot.action("{} {}".format(verb, target))
+    bot.action(f"{verb} {target}")
