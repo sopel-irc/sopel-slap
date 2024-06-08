@@ -5,7 +5,7 @@ Plugin for Sopel that lets users slap each other in fun ways.
 
 Original slap.py copyright 2009, Michael Yanovich, yanovich.net.
 
-This rewritten & packaged version for Sopel 7+:
+This rewritten & packaged version for Sopel 7.1+:
 Copyright 2023, dgw, technobabbl.es
 
 https://sopel.chat
