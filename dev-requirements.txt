@@ -1,0 +1,5 @@
+# requirements for dev
+flake8
+isort
+pylint
+pyroma
