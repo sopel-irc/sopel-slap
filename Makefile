@@ -15,7 +15,6 @@ qa: quality pylint pyroma
 .PHONY: develop build
 
 develop:
-	python -m pip install -U pip
 	python -m pip install -U -r dev-requirements.txt
 	python -m pip install -e .
 
