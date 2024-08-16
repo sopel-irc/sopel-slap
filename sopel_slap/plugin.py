@@ -1,4 +1,3 @@
-# coding=utf8
 """Sopel Slap plugin
 
 Plugin for Sopel that lets users slap each other in fun ways.
@@ -10,6 +9,8 @@ Copyright 2023, dgw, technobabbl.es
 
 https://sopel.chat
 """
+from __future__ import annotations
+
 import random
 
 from sopel import formatting, plugin, tools
