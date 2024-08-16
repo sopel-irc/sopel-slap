@@ -10,7 +10,7 @@ https://sopel.chat
 """
 from __future__ import annotations
 
-from sopel import formatting, plugin
+from sopel import plugin
 
 from .util import slap
 
@@ -22,7 +22,18 @@ def slap_command(bot, trigger):
 
     if target is None:
         target = trigger.nick
-    else:
-        target = formatting.plain(target)
+
+    return slap(bot, trigger, target)
+
+
+@plugin.ctcp('ACTION')
+@plugin.rule(r'^slaps (\w+)$')
+def slap_action(bot, trigger):
+    """Slap someone using the power of CTCP ACTION."""
+    target = trigger.group(1)
+
+    if target is None:
+        # no self-slaps via /me; just fail silently
+        return plugin.NOLIMIT
 
     return slap(bot, trigger, target)

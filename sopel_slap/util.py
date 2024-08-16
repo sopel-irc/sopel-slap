@@ -11,7 +11,7 @@ from __future__ import annotations
 import random
 from typing import TYPE_CHECKING
 
-from sopel import tools
+from sopel import formatting, tools
 
 if TYPE_CHECKING:
     from sopel.bot import SopelWrapper
@@ -31,6 +31,9 @@ VERBS = (
 
 def slap(bot: SopelWrapper, trigger: Trigger, target: str):
     """Do the slapping."""
+    # the target could contain formatting control codes, so strip those
+    target = formatting.plain(target)
+
     # ensure target is an Identifier to increase reliability of "is nick" check
     if not isinstance(target, tools.Identifier):
         if hasattr(bot, 'make_identifier'):
