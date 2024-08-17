@@ -10,23 +10,30 @@ https://sopel.chat
 """
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 from sopel import plugin
 
 from .config import SlapSection, do_configure
 from .util import slap
 
+if TYPE_CHECKING:
+    from sopel.bot import Sopel, SopelWrapper
+    from sopel.config import Config
+    from sopel.trigger import Trigger
 
-def setup(bot):
+
+def setup(bot: Sopel):
     bot.settings.define_section('slap', SlapSection)
 
 
-def configure(settings):
+def configure(settings: Config):
     settings.define_section('slap', SlapSection)
     do_configure(settings.slap)
 
 
 @plugin.commands('slap', 'slaps')
-def slap_command(bot, trigger):
+def slap_command(bot: SopelWrapper, trigger: Trigger):
     """Slap a <target> (e.g. nickname)"""
     target = trigger.group(3)
 
@@ -38,7 +45,7 @@ def slap_command(bot, trigger):
 
 @plugin.ctcp('ACTION')
 @plugin.rule(r'^slaps (\w+)$')
-def slap_action(bot, trigger):
+def slap_action(bot: SopelWrapper, trigger: Trigger):
     """Slap someone using the power of CTCP ACTION."""
     target = trigger.group(1)
 

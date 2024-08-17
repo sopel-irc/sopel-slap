@@ -18,35 +18,38 @@ if TYPE_CHECKING:
     from sopel.trigger import Trigger
 
 
-def slap(bot: SopelWrapper, trigger: Trigger, target: str):
+def slap(bot: SopelWrapper, trigger: Trigger, nick: str):
     """Do the slapping."""
     # the target could contain formatting control codes, so strip those
-    target = formatting.plain(target)
+    nick = formatting.plain(nick)
+
+    # check for bot-slapping and admin-slapping
+    if nick == bot.nick:
+        if trigger.admin:
+            nick = 'itself'
+        else:
+            nick = trigger.nick
+
+    if nick in bot.config.core.admins and not trigger.admin:
+        nick = trigger.nick
 
     # ensure target is an Identifier to increase reliability of "is nick" check
-    if not isinstance(target, tools.Identifier):
+    if isinstance(nick, tools.Identifier):
+        target = nick
+    else:
         if hasattr(bot, 'make_identifier'):
-            target = bot.make_identifier(target)
+            target = bot.make_identifier(nick)
         else:
             # TODO: remove once Sopel 7 support is dropped
-            target = tools.Identifier(target)
+            target = tools.Identifier(nick)
 
     if not target.is_nick():
         bot.reply("You can't slap the whole channel!")
         return
 
-    if target not in bot.channels[trigger.sender].users:
+    if target not in bot.channels[trigger.sender].users and target != 'itself':
         bot.reply("You can't slap someone who isn't here!")
         return
-
-    if target == bot.nick:
-        if not trigger.admin:
-            target = trigger.nick
-        else:
-            target = 'itself'
-
-    if target in bot.config.core.admins and not trigger.admin:
-        target = trigger.nick
 
     verb = random.choice(bot.settings.slap.verbs)
 
