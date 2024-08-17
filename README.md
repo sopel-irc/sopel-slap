@@ -14,6 +14,26 @@ _Substitute the appropriate `pip` command based on your environment (e.g.
 _If your Sopel configuration requires it, run `sopel-plugins enable slap`,
 passing the appropriate config name to `-c` if you have multiple bots._
 
+## Configuration
+
+The easiest way to configure this plugin is via Sopel's built-in wizard:
+
+```sh
+sopel-plugins configure slap
+```
+
+Right now, there is only one option:
+
+* `verbs`: A list of verbs to choose from when slapping people. Overrides the
+  default list if set.
+
+Probably, the easiest way to make a custom list is to just press Enter twice
+when the config wizard asks for a list of verbs, which will add the default
+list to your bot's `.cfg` file. Then you can use your favorite text editor.
+
+_(We're aware that Sopel's wizard doesn't have great UX when it comes to
+entering lists. It'll get worked on someday, probably.)_
+
 ## Commands
 
 <dl>

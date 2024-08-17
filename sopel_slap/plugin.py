@@ -12,7 +12,17 @@ from __future__ import annotations
 
 from sopel import plugin
 
+from .config import SlapSection, do_configure
 from .util import slap
+
+
+def setup(bot):
+    bot.settings.define_section('slap', SlapSection)
+
+
+def configure(settings):
+    settings.define_section('slap', SlapSection)
+    do_configure(settings.slap)
 
 
 @plugin.commands('slap', 'slaps')
