@@ -17,17 +17,6 @@ if TYPE_CHECKING:
     from sopel.bot import SopelWrapper
     from sopel.trigger import Trigger
 
-VERBS = (
-    'annihilates',
-    'destroys',
-    'kicks',
-    'owns',
-    'punches',
-    'pwns',
-    'roundhouse kicks',
-    'slaps',
-)
-
 
 def slap(bot: SopelWrapper, trigger: Trigger, target: str):
     """Do the slapping."""
@@ -59,6 +48,6 @@ def slap(bot: SopelWrapper, trigger: Trigger, target: str):
     if target in bot.config.core.admins and not trigger.admin:
         target = trigger.nick
 
-    verb = random.choice(VERBS)
+    verb = random.choice(bot.settings.slap.verbs)
 
     bot.action(f"{verb} {target}")
