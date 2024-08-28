@@ -1,5 +1,11 @@
 ## Changelog
 
+### 0.3.0
+
+* Add CTCP ACTION support, e.g. `/me slaps ____` (#2)
+* Make verb list configurable (#3)
+
+
 ### 0.2.0
 
 * Future-proofing for Sopel 8 (#1)
