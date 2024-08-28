@@ -37,7 +37,7 @@ def slap_command(bot, trigger):
 
 
 @plugin.ctcp('ACTION')
-@plugin.rule(r'^slaps (\w+)$')
+@plugin.rule(r'^slaps (\S+)$')
 def slap_action(bot, trigger):
     """Slap someone using the power of CTCP ACTION."""
     target = trigger.group(1)
