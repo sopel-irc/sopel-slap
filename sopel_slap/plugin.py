@@ -31,16 +31,16 @@ def slap_command(bot, trigger):
     target = trigger.group(3)
 
     if target is None:
+        # `.slap` is a shortcut for slapping oneself
         target = trigger.nick
 
     return slap(bot, trigger, target)
 
 
-@plugin.ctcp('ACTION')
-@plugin.rule(r'^slaps (\S+)$')
+@plugin.action_command('slaps')
 def slap_action(bot, trigger):
     """Slap someone using the power of CTCP ACTION."""
-    target = trigger.group(1)
+    target = trigger.group(3)
 
     if target is None:
         # no self-slaps via /me; just fail silently
