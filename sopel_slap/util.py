@@ -45,7 +45,10 @@ def slap(bot: SopelWrapper, trigger: Trigger, target: str):
         else:
             target = 'itself'
 
-    if target in bot.config.core.admins and not trigger.admin:
+    if not trigger.admin and (
+        target == bot.config.core.owner or
+        target in bot.config.core.admins
+    ):
         target = trigger.nick
 
     verb = random.choice(bot.settings.slap.verbs)
