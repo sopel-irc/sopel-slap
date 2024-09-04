@@ -26,24 +26,17 @@ def configure(settings):
 
 
 @plugin.commands('slap', 'slaps')
+@plugin.action_command('slaps')
+@plugin.example('.slap Tr0ll_Extr4ordinair3')
 def slap_command(bot, trigger):
-    """Slap a <target> (e.g. nickname)"""
+    """Slap someone else in the channel."""
     target = trigger.group(3)
 
     if target is None:
+        # `.slap` is a shortcut for slapping oneself, but not in CTCP ACTIONs
+        if trigger.ctcp:
+            return plugin.NOLIMIT
+
         target = trigger.nick
-
-    return slap(bot, trigger, target)
-
-
-@plugin.ctcp('ACTION')
-@plugin.rule(r'^slaps (\S+)$')
-def slap_action(bot, trigger):
-    """Slap someone using the power of CTCP ACTION."""
-    target = trigger.group(1)
-
-    if target is None:
-        # no self-slaps via /me; just fail silently
-        return plugin.NOLIMIT
 
     return slap(bot, trigger, target)
