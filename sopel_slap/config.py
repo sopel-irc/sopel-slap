@@ -24,6 +24,10 @@ VERBS = (
 
 class SlapSection(types.StaticSection):
     verbs = types.ListAttribute('verbs', default=VERBS)
+    """Verbs to choose from when slapping someone."""
+
+    reflexive = types.ValidatedAttribute('reflexive', default='itself')
+    """The reflexive pronoun the bot uses when someone slaps it."""
 
 
 def do_configure(section: types.StaticSection):
@@ -34,4 +38,8 @@ def do_configure(section: types.StaticSection):
         "the current list (shown below) to your bot's .cfg file, where it\n"
         "can be edited using your favorite text editor.\n\n"
         "Current verb list:",
+    )
+    section.configure_setting(
+        'reflexive',
+        "What pronoun should the bot use for itself when someone slaps it?",
     )

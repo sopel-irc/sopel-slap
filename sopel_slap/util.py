@@ -43,7 +43,7 @@ def slap(bot: SopelWrapper, trigger: Trigger, target: str):
         if not trigger.admin:
             target = trigger.nick
         else:
-            target = 'itself'
+            target = bot.settings.slap.reflexive
 
     if not trigger.admin and (
         target == bot.config.core.owner or
