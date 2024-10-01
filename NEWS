@@ -1,5 +1,10 @@
 ## Changelog
 
+### 0.4.0
+
+* Add configuration to override "itself" as the bot's reflexive pronoun (#7)
+
+
 ### 0.3.2
 
 * Fix owners not being protected like admins are (#6)
