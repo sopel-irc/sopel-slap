@@ -22,17 +22,24 @@ The easiest way to configure this plugin is via Sopel's built-in wizard:
 sopel-plugins configure slap
 ```
 
-Right now, there is only one option:
+Available settings are described below.
 
-* `verbs`: A list of verbs to choose from when slapping people. Overrides the
-  default list if set.
+### The `verbs` option
 
-Probably, the easiest way to make a custom list is to just press Enter twice
+`verbs` is a list of verbs to choose from when slapping people. If set, it
+overrides the default list.
+
+Probably the easiest way to make a custom list is to just press Enter twice
 when the config wizard asks for a list of verbs, which will add the default
 list to your bot's `.cfg` file. Then you can use your favorite text editor.
 
 _(We're aware that Sopel's wizard doesn't have great UX when it comes to
 entering lists. It'll get worked on someday, probably.)_
+
+### The `reflexive` option
+
+`reflexive` is the pronoun the bot uses when someone with authorization does
+`.slap BotNick`. By default, this is set to "itself".
 
 ## Commands
 
