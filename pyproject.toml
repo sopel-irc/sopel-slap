@@ -11,7 +11,7 @@ namespaces = false
 
 [project]
 name = "sopel-slap"
-version = "0.4.0.post1"
+version = "0.4.1"
 description = "Plugin for Sopel that lets users slap each other in fun ways"
 keywords = [
   "sopel",
