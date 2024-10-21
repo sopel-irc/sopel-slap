@@ -36,7 +36,12 @@ def slap(bot: SopelWrapper, trigger: Trigger, target: str):
         return
 
     if target not in bot.channels[trigger.sender].users:
-        bot.reply("You can't slap someone who isn't here!")
+        if not trigger.ctcp:
+            # only reply if a command was used; ignore CTCP ACTIONs
+            # we don't want the bot to be annoying to people who do "/me slaps"
+            # without realizing (or remembering) that the bot responds to it
+            bot.reply("You can't slap someone who isn't here!")
+
         return
 
     if target == bot.nick:
