@@ -54,7 +54,6 @@ VERBS = (
     'throws a cactus at',
     'blasts airhorn at',
     'splatters paint on',
-    'locks in a room with bad music',
     'hurls marshmallows at',
 )
 
