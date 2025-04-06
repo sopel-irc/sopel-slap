@@ -12,13 +12,19 @@ from sopel.config import types
 
 VERBS = (
     'annihilates',
+    'body slams',
     'destroys',
+    'dropkicks',
+    'headbutts',
+    'karate chops',
     'kicks',
     'owns',
     'punches',
     'pwns',
     'roundhouse kicks',
     'slaps',
+    'smacks',
+    'whacks',
 )
 
 
